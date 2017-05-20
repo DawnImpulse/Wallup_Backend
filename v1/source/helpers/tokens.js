@@ -1,11 +1,7 @@
-var jwt             = require('jsonwebtoken'),
-    path            = require('path'),
-    file            = require('fs'),
-    privateKey      = path.resolve(__dirname,'./keys/wallup'),
+var privateKey      = path.resolve(__dirname,'./keys/wallup'),
     tokenVerifyLogs = path.resolve(__dirname,'..','..','./logs')+'/tokenVerifyLogs.txt',
     tokenLogs       = path.resolve(__dirname,'..','..','./logs')+'/tokenLogs.txt',
     tokenIssuer          = "Stonevire Technologies",
-    dateTime        = new Date(),
     checkTokenResponse,
     tokenGenerateResponse,
     token;
@@ -26,7 +22,7 @@ global.generateToken = function(UID,AID){
         return tokenGenerateResponse;
     }
     
-};//end of generate Token
+};//generateToken function
 
 global.verifyToken = function(tokenToCheck,res){
   
@@ -51,6 +47,6 @@ global.verifyToken = function(tokenToCheck,res){
         
     });//end of jwt verify
     
-};//end of checkToken function
+};//verifyToken function
 
     

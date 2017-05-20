@@ -1,10 +1,5 @@
-var events          = require('events'),
-    file            = require('fs'),
-    path            = require('path'),
-    dateTime        = new Date(),
-    sqlQuery        = "Select f.AID as AID,i.name as name from featured_popular as f, images as i " +
-                      "where f.type='popular' AND f.duration=? AND f.image_AID=i.AID ORDER BY f.AID desc LIMIT ? ",
-    errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+var sqlQuery        = "Select f.AID as AID,i.name as name from featured_popular as f, images as i " +
+                      "where f.type='popular' AND f.duration=? AND f.image_AID=i.AID ORDER BY f.AID desc LIMIT ? ";
 
 var pageNo,
     duration,
@@ -12,8 +7,6 @@ var pageNo,
     upperLimit,
     lowerLimit,
     responseArray = [];
-
-global.w3 = new events.EventEmitter();
 
 w3.on('w3fetch',function(req,res){
 

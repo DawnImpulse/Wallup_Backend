@@ -1,8 +1,4 @@
-var sqlDecl         = require ('mysql'),
-    path            = require('path'),
-    file            = require('fs'),
-    dateTime        = Date();
-    errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+var sqlDecl         = require ('mysql');    
 
 global.sqlConn = sqlDecl.createConnection({
     host: "localhost",

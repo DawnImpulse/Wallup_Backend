@@ -1,10 +1,4 @@
-var sql             = require('./mysqlConn.js'),
-    file            = require('fs'),
-    path            = require('path'),
-    events          = require('events'),
-    dateTime        = new Date(), //get current date time
-    sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from images ORDER BY AID DESC LIMIT ?',
-    errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+var sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from images ORDER BY AID DESC LIMIT ?';
 
 var pageNo,
     lowerLimit,
@@ -13,8 +7,6 @@ var pageNo,
     imagesJson, //json object containing image details
     responseArray   = []; //array
     
-global.w1 = new events.EventEmitter();
-
 w1.on('w1fetch', function (req,res) {
 		
     pageNo          = req.body.pageNo,

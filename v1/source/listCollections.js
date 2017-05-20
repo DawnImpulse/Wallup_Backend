@@ -1,15 +1,7 @@
-var sql          = require('mysql'),
-    file         = require('fs'),
-    path         = require('path'),
-    events       = require('events'),
-    dateTime     = new Date(),
-    sqlQuery     = "Select AID,name,images,highlights from collection ORDER BY NAME ASC",
-    errorLogFile = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+var sqlQuery     = "Select AID,name,images,highlights from collection ORDER BY NAME ASC";   
 
 var collectionJson,
     responseArray = [];
-
-global.w2 = new events.EventEmitter();
 
 w2.on('w2fetch',function(req,res){
    sqlConn.query(sqlQuery,function(err,result){
