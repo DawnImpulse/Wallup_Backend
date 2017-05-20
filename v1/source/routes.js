@@ -12,6 +12,7 @@ exceptionLogFile = path.resolve(__dirname,'..','..','./logs')+'/exceptionLogs.tx
 require('./listNewImages.js');
 require('./listCollections.js');
 require('./listPopular.js');
+require('./tokens.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -36,6 +37,9 @@ router.route('/userLoginSignup').post(function(req,res){});
 router.route('/getIndividualCollection').post(function(req,res){});
 router.route('/getIndividualImage').post(function(req,res){});
 router.route('/getSimilarImages').post(function(req,res){});
+
+router.route('/test1').post(function(req,res){ res.json({token:generateToken('uid','aid')}); });
+router.route('/test2').post(function(req,res){ checkToken(req.body.token,res); });
 
 
 // =============================================================================

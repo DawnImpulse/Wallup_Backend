@@ -2,7 +2,7 @@ var sql             = require('./mysqlConn.js'),
     file            = require('fs'),
     path            = require('path'),
     events          = require('events'),
-    dateTime        = new Date(); //get current date time
+    dateTime        = new Date(), //get current date time
     sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from images ORDER BY AID DESC LIMIT ?',
     errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
 
