@@ -11,6 +11,7 @@ exceptionLogFile = path.resolve(__dirname,'..','..','./logs')+'/exceptionLogs.tx
 
 require('./listNewImages.js');
 require('./listCollections.js');
+require('./listPopular.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,8 +25,8 @@ router.get('/listCollections', function(req, res) { responseObject = res; w2.emi
 router.get('/listFeatured', function(req, res) {});
 
 //POST-------------------
-router.route('/listNewImages').post(function(req,res){ responseObject = res; w1.emit('w1fetch',req,res); });
-router.route('/listPopular').post(function(req,res){});
+router.route('/listNewImages').post(function(req,res){ responseObject = res; w1.emit('w1fetch',req,res);});
+router.route('/listPopular').post(function(req,res){ responseObject = res; w3.emit('w3fetch',req,res);});
 router.route('/sendDesktop').post(function(req,res){});
 router.route('/subscribeDesktop').post(function(req,res){});
 router.route('/addUpdateUser').post(function(req,res){});

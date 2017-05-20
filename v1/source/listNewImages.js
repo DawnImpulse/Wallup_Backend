@@ -1,25 +1,23 @@
-var sql      = require('./mysqlConn.js'),
-    events   = require('events'),
-    file     = require('fs'),
-    path     = require('path'),
-    pageNo,
-    thumbnailSize,
+var sql             = require('./mysqlConn.js'),
+    file            = require('fs'),
+    path            = require('path'),
+    events          = require('events'),
+    dateTime        = new Date(); //get current date time
+    sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from images ORDER BY AID DESC LIMIT ?',
+    errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+
+var pageNo,
     lowerLimit,
     upperLimit,
     sqlQueryParams,
     imagesJson, //json object containing image details
-    responseArray   = [], //array
-    dateTime        = new Date(); //get current date time
-    sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from Images ORDER BY AID DESC LIMIT ?',
-    errorLogFile    = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+    responseArray   = []; //array
     
-
 global.w1 = new events.EventEmitter();
 
 w1.on('w1fetch', function (req,res) {
 		
     pageNo          = req.body.pageNo,
-    thumbnailSize   = req.body.thumbnailSize;
     
     upperLimit = pageNo*10;
     lowerLimit = upperLimit - 10;

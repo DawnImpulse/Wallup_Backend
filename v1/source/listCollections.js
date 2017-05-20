@@ -2,11 +2,12 @@ var sql          = require('mysql'),
     file         = require('fs'),
     path         = require('path'),
     events       = require('events'),
-    collectionJson,
-    responseArray = [],
     dateTime     = new Date(),
-    sqlQuery     = "Select AID,name,images,highlights from Collection ORDER BY NAME ASC",
+    sqlQuery     = "Select AID,name,images,highlights from collection ORDER BY NAME ASC",
     errorLogFile = path.resolve(__dirname,'..','..','./logs') + '/errorLogs.txt';
+
+var collectionJson,
+    responseArray = [];
 
 global.w2 = new events.EventEmitter();
 
