@@ -1,10 +1,20 @@
 require('./helpers/globalVars.js');
 require('./helpers/tokens.js');
 require('./helpers/mysqlConn.js');
+require('./helpers/mailer.js')
 
 require('./listNewImages.js');
 require('./listCollections.js');
 require('./listPopular.js');
+
+var mailp = {to:'saksham@stonevire.com',
+             from:'"StoneVire Support" <support@stonevire.com>',
+             bcc:'',
+             cc:'',
+             replyTo:'',
+             subject:'Hey',
+             body:'Yuppy',
+             attachments:''}
 
 var router           = express.Router(),
     port             = process.env.PORT || 7020,
@@ -30,17 +40,23 @@ router.route('/v1/getIndividualCollection').post(function(req,res){});
 router.route('/v1/getIndividualImage').post(function(req,res){});
 router.route('/v1/getSimilarImages').post(function(req,res){});
 
-router.route('/test1').post(function(req,res){ });
+router.route('/test1').post(function(req,res){ responseObject = res;mailing(mailp); res.json({success:true});});
 router.route('/test2').post(function(req,res){ });
 
 //------------------------
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
-    fs.appendFile(exceptionLogFile,dateTime + " :: " +err+"\n",function(err){console.log(err);});
+    file.appendFile(exceptionLogFile,dateTime + " :: " +err+"\n",function(err){console.log(err);});
     
-    responseObject.json({success      : "false",
+    if(responseObject.headersSent)
+    {
+        console.log('Headers-Sent');
+    }else
+        {
+            responseObject.json({success      : "false",
                          errorId      : "uncaughtException",
-                         errorMessage : "Server Side Exception"});
+                         errorMessage : "Server Side Exception"});   
+        }
 }); //Global Unchecked Exception Handler
 
 app.use('/wallup', router);
