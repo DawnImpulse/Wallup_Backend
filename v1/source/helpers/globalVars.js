@@ -31,3 +31,10 @@ global.supportTransporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
+
+global.stonevireHQ       = "https://www.stonevire.com/resources/images/wallup/HQ/";
+global.stonevireHD       = "https://www.stonevire.com/resources/images/wallup/HD/";
+global.stonevireFHD      = "https://www.stonevire.com/resources/images/wallup/FHD/";
+global.stonevire2k       = "https://www.stonevire.com/resources/images/wallup/2k/";
+global.stonevire4k       = "https://www.stonevire.com/resources/images/wallup/4k/";
+global.stonevireOriginal = "https://www.stonevire.com/resources/images/wallup/Original/";

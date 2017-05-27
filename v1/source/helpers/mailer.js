@@ -27,7 +27,8 @@ global.mailing = function(mailOptions){
             bcc : bcc,
             replyTo : replyTo,
             subject : subject,
-            text : body,        
+            text : body,
+            attachments : attachments,
         };
 
 

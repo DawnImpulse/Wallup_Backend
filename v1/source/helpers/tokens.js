@@ -1,6 +1,6 @@
-var privateKey      = path.resolve(__dirname,'./keys/wallup'),
-    tokenVerifyLogs = path.resolve(__dirname,'..','..','./logs')+'/tokenVerifyLogs.txt',
-    tokenLogs       = path.resolve(__dirname,'..','..','./logs')+'/tokenLogs.txt',
+var privateKey      = path.resolve(__dirname,'..','./keys/wallup'),
+    tokenVerifyLogs = path.resolve(__dirname,'..','..','..','./logs')+'/tokenVerifyLogs.txt',
+    tokenLogs       = path.resolve(__dirname,'..','..','..','./logs')+'/tokenLogs.txt',
     tokenIssuer          = "Stonevire Technologies",
     checkTokenResponse,
     tokenGenerateResponse,
@@ -24,7 +24,7 @@ global.generateToken = function(UID,AID){
     
 };//generateToken function
 
-global.verifyToken = function(tokenToCheck,res){
+global.verifyToken = function(tokenToCheck){
   
     jwt.verify(tokenToCheck, privateKey, function(err, decoded) {
         if (err)
