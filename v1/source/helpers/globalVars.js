@@ -10,11 +10,13 @@ global.mailLogs         = path.resolve(__dirname,'..','..','..','./logs') + '/ma
 global.bitlyLogs        = path.resolve(__dirname,'..','..','..','./logs') + '/bitlyLogs.txt';
 global.errorLogFile     = path.resolve(__dirname,'..','..','..','./logs') + '/errorLogs.txt';
 global.exceptionLogFile = path.resolve(__dirname,'..','..','..','./logs')+'/exceptionLogs.txt';
+global.imagesPath       = path.resolve(__dirname,'..','..','..','..','./resources/images');
 
 global.w1 = new events.EventEmitter();
 global.w2 = new events.EventEmitter();
 global.w3 = new events.EventEmitter();
 global.w4 = new events.EventEmitter();
+global.w7 = new events.EventEmitter();
 
 global.app      = express();
 global.dateTime = new Date;
