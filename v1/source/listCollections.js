@@ -4,7 +4,7 @@ var collectionJson,
     responseArray = [];
 
 w2.on('w2fetch',function(req,res){
-   sqlConn.query(sqlQuery,function(err,result){
+   sql_conn.query(sqlQuery,function(err,result){
        
        if(err)
            {

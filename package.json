@@ -6,8 +6,10 @@
     "node": "6.2.0"
   },
   "dependencies": {
+    "bcrypt": "1.0.2",
     "bitly": "4.1.1",
     "body-parser": "1.17.1",
+    "checksum": "0.1.1",
     "cookie-parser": "1.4.3",
     "express": "4.15.2",
     "gm": "1.23.0",

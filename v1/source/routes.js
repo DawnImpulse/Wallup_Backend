@@ -1,11 +1,13 @@
 require('./helpers/globalVars.js');
 require('./helpers/tokens.js');
 require('./helpers/mysqlConn.js');
-require('./helpers/mailer.js')
+require('./helpers/mailer.js');
+require('./helpers/checksum.js');
 
 require('./listNewImages.js');
 require('./listCollections.js');
 require('./listPopular.js');
+require('./login.js');
 require('./addImage.js');
 
 var url = require('url');
@@ -40,7 +42,7 @@ router.route('/v1/sendDesktop').post(body_urlencode,function(req,res){});
 router.route('/v1/subscribeDesktop').post(body_urlencode,function(req,res){});
 router.route('/v1/addUpdateUser').post(body_urlencode,function(req,res){});
 router.route('/v1/modifyImageDetails').post(body_urlencode,function(req,res){});
-router.route('/v1/userLoginSignup').post(body_urlencode,function(req,res){});
+router.route('/v1/login').post(body_urlencode,function(req,res){ responseObject = res; w9.emit('w9login',req,res);});
 router.route('/v1/getIndividualCollection').post(body_urlencode,function(req,res){});
 router.route('/v1/getIndividualImage').post(body_urlencode,function(req,res){});
 router.route('/v1/getSimilarImages').post(body_urlencode,function(req,res){});
@@ -59,7 +61,6 @@ router.route('/v1/addImage').post(upload.single('image'),function(req,res){
                   });   
         }
 });
-
 router.route('/test1').post(function(req,res){ });
 router.route('/test2').post(function(req,res){ });
 

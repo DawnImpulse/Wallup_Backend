@@ -17,7 +17,7 @@ w3.on('w3fetch',function(req,res){
     lowerLimit      = upperLimit - 10;
     sqlParams       = [duration,upperLimit];
     
-    sqlConn.query(sqlQuery,sqlParams,function(err,result){
+    sql_conn.query(sqlQuery,sqlParams,function(err,result){
         if(err){
                     console.log(err);
                     file.appendFile(errorLogFile,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});                

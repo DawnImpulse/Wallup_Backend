@@ -1,0 +1,26 @@
+if(token!=null)
+            {
+                var verifyResponse = verifyToken(token);
+                if(verifyResponse.success == "false" && verifyResponse.errorName != "TokenExpiredError")
+                {
+                    res.json({success       : "false",
+                              errorID       : "token-invalid",
+                              errorMessage  : "Token Verification Failed"
+                             });
+                    
+                }else if(verifyResponse.errorName === "TokenExpiredError") //regenerate Token
+                    {
+                        
+                    }else
+                    {
+                       res.json({success        : "false",
+                                 errorID        : "token-expired",
+                                 errorMessage   : "Token is Expired" 
+                                }); 
+                    }
+            }else
+            {
+                res.json({success      : "false",
+                          errorSource  : "token-not-present",
+                          errorMessage : "Token Not Provided"})
+            }

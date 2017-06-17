@@ -6,6 +6,7 @@ global.jwt              = require('jsonwebtoken'),
 global.express          = require('express'),
 global.bodyParser       = require('body-parser'),
 global.nodemailer       = require('nodemailer'),
+global.sleep            = require('system-sleep');
 global.mailLogs         = path.resolve(__dirname,'..','..','..','./logs') + '/mailLogs.txt';
 global.bitlyLogs        = path.resolve(__dirname,'..','..','..','./logs') + '/bitlyLogs.txt';
 global.errorLogFile     = path.resolve(__dirname,'..','..','..','./logs') + '/errorLogs.txt';
@@ -17,6 +18,7 @@ global.w2 = new events.EventEmitter();
 global.w3 = new events.EventEmitter();
 global.w4 = new events.EventEmitter();
 global.w7 = new events.EventEmitter();
+global.w9 = new events.EventEmitter();
 
 global.app      = express();
 global.dateTime = new Date;
@@ -33,10 +35,3 @@ global.supportTransporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
-
-global.stonevireHQ       = "https://www.stonevire.com/resources/images/wallup/HQ/";
-global.stonevireHD       = "https://www.stonevire.com/resources/images/wallup/HD/";
-global.stonevireFHD      = "https://www.stonevire.com/resources/images/wallup/FHD/";
-global.stonevire2k       = "https://www.stonevire.com/resources/images/wallup/2k/";
-global.stonevire4k       = "https://www.stonevire.com/resources/images/wallup/4k/";
-global.stonevireOriginal = "https://www.stonevire.com/resources/images/wallup/Original/";

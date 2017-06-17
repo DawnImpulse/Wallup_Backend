@@ -53,7 +53,7 @@ w4.on('w4mail',function(req,res){
             
             if(tokenVerifyResponse.success === true)
                 {
-                    wait.for(sqlConn.query(sqlQuery,tokenVerifyResponse.UID,function(err,result){                
+                    wait.for(sql_conn.query(sqlQuery,tokenVerifyResponse.UID,function(err,result){                
                         email   = result.email;
                         name    = result.name;
                     }));

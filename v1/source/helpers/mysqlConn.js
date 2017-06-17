@@ -1,13 +1,13 @@
-var sqlDecl         = require ('mysql');    
+var sql_decl         = require ('mysql');    
 
-global.sqlConn = sqlDecl.createConnection({
+global.sql_conn = sql_decl.createConnection({
     host: "localhost",
     user: "root",
     database: "wallup",
     password: "root"
 });
 
-sqlConn.connect(function(err){
+sql_conn.connect(function(err){
     if(err)
     {
         console.log('Error Connecting DB');

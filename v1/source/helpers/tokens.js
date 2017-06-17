@@ -4,21 +4,27 @@ var privateKey      = path.resolve(__dirname,'..','./keys/wallup'),
     tokenIssuer          = "Stonevire Technologies",
     checkTokenResponse,
     tokenGenerateResponse,
+    tokenVerifyResponse,
     token;
 
-global.generateToken = function(UID,AID){
+global.generateToken = function(UID){
     
     try
     {
         token                   = jwt.sign({aud:UID,iss:tokenIssuer}, privateKey, { expiresIn: 365*24*60*60});    
-        tokenGenerateResponse   = {success:'true',token:token} ;
+        tokenGenerateResponse   = {success : "true",
+                                   token   : token} ;
         return tokenGenerateResponse;
         
     }catch(err)
     {        
         console.log(err);
         file.appendFile(tokenLogs,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);}); 
-        tokenGenerateResponse = {success:'false',error:err} ;
+        tokenGenerateResponse = {
+                                 success        : "false",                                 
+                                 errorID        : "token-generate-failed",
+                                 errorName      : err
+                                };
         return tokenGenerateResponse;
     }
     
@@ -26,27 +32,27 @@ global.generateToken = function(UID,AID){
 
 global.verifyToken = function(tokenToCheck){
   
-    jwt.verify(tokenToCheck, privateKey, function(err, decoded) {
-        if (err)
-            {            
-                console.log(err);
-                file.appendFile(tokenVerifyLogs,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});             
-                checkTokenResponse = {success : 'false',
-                                      errorName : err.name};
-                
-                return checkTokenResponse;
-            
-            }else
-            {
-                checkTokenResponse = {success : 'true',
-                                      UID:decoded.aud};
-                
-                return checkTokenResponse;
-            }
-
-        
-    });//end of jwt verify
     
+    try
+    {
+        tokenVerifyResponse = jwt.verify(tokenToCheck,privateKey);
+        checkTokenResponse  = {
+                                success : 'true',
+                                UID     : decoded.aud
+                              };        
+                
+        return checkTokenResponse;
+        
+    }catch(err)
+    {
+        console.log(err);
+        file.appendFile(tokenVerifyLogs,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});             
+        checkTokenResponse = {success     : "false",
+                              errorID     : "token-verify-failed",
+                              errorName   : err.name};
+
+        return checkTokenResponse;
+    }        
 };//verifyToken function
 
     

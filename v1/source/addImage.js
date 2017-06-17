@@ -48,7 +48,7 @@ w7.on('w7tableEntry',function(req,res,originalName){
             params = [originalName,"",tags];
         }
     
-    sqlConn.query(sqlInsert,params,function(err,result){
+    sql_conn.query(sqlInsert,params,function(err,result){
         
         if(err)
            {

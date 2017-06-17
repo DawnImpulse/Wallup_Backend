@@ -15,7 +15,7 @@ w1.on('w1fetch', function (req,res) {
     lowerLimit = upperLimit - 10;
     
     //Querying DB for list of images
-    sqlConn.query(sqlQuery,upperLimit,function(err,result){
+    sql_conn.query(sqlQuery,upperLimit,function(err,result){
             if(err){
                     console.log(err);
                     file.appendFile(errorLogFile,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});                
