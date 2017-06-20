@@ -18,6 +18,7 @@ global.w2 = new events.EventEmitter();
 global.w3 = new events.EventEmitter();
 global.w4 = new events.EventEmitter();
 global.w7 = new events.EventEmitter();
+global.w8 = new events.EventEmitter();
 global.w9 = new events.EventEmitter();
 
 global.app      = express();

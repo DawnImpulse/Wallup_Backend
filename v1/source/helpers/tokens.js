@@ -38,9 +38,9 @@ global.verifyToken = function(tokenToCheck){
         tokenVerifyResponse = jwt.verify(tokenToCheck,privateKey);
         checkTokenResponse  = {
                                 success : 'true',
-                                UID     : decoded.aud
+                                UID     : tokenVerifyResponse.aud
                               };        
-                
+                        
         return checkTokenResponse;
         
     }catch(err)

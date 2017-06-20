@@ -9,6 +9,7 @@ require('./listCollections.js');
 require('./listPopular.js');
 require('./login.js');
 require('./addImage.js');
+require('./modifyImageDetails.js');
 
 var url = require('url');
 var multer = require('multer');
@@ -41,7 +42,7 @@ router.route('/v1/listPopular').post(body_urlencode,function(req,res){ responseO
 router.route('/v1/sendDesktop').post(body_urlencode,function(req,res){});
 router.route('/v1/subscribeDesktop').post(body_urlencode,function(req,res){});
 router.route('/v1/addUpdateUser').post(body_urlencode,function(req,res){});
-router.route('/v1/modifyImageDetails').post(body_urlencode,function(req,res){});
+router.route('/v1/modifyImage').post(body_urlencode,function(req,res){responseObject = res; w8.emit('w8modifyImage',req,res);});
 router.route('/v1/login').post(body_urlencode,function(req,res){ responseObject = res; w9.emit('w9login',req,res);});
 router.route('/v1/getIndividualCollection').post(body_urlencode,function(req,res){});
 router.route('/v1/getIndividualImage').post(body_urlencode,function(req,res){});
