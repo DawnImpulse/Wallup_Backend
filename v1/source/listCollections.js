@@ -19,8 +19,10 @@ w2.on('w2fetch',function(req,res){
                    {
                        collectionJson = {AID        : result[i].AID,
                                          name       : result[i].name,
-                                         images     : result[i].images,
-                                         highlights : result[i].highlights};
+                                         images     : result[i].images,                                         
+                                         highlights : result[i].highlights,
+                                         importance : result[i].importance
+                                        };
                        responseArray.push(collectionJson);
                    }
             
