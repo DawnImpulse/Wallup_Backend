@@ -40,7 +40,7 @@ var value = 0,
 
 
 var readQuery  = `Select * from temp_image where AID=?`,
-    writeQuery = `INSERT INTO images(id,details) values(?,?)`,
+    writeQuery = `INSERT INTO images(id,details,author_url) values(?,?,?)`,
 	deleteQuery= `Delete from temp_image where AID=?`;
 
 sql_conn.query("select AID from temp_image",function(err,result){
@@ -103,7 +103,8 @@ for (var i = 0; i < 50; i++)
 
 		if(requestFinish==1)
 		{
-			var params = [parsedTemp.id,imageDetails];		
+			var image_details_parsed = JSON.parse(imageDetails);
+			var params = [parsedTemp.id,imageDetails,image_details_parsed.user.links.html];		
 			sql_conn.query(writeQuery,params,function(err,result){
 				if(err)
 				{
