@@ -1,7 +1,7 @@
 var sql_query_verify_email  = `SELECT * FROM users WHERE email=?`,
-    sql_query_signup        = `INSERT INTO USERS(uid,name,email,password) values(?,?,?,?)`,
-    sql_query_signup_google = `INSERT INTO USERS(uid,name,email,gid,dp) values(?,?,?,?,?)`,    
-    sql_query_signup_fb     = `INSERT INTO USERS(uid,name,email,fid,dp) values(?,?,?,?)`,    
+    sql_query_signup        = `INSERT INTO users(uid,name,email,password) values(?,?,?,?)`,
+    sql_query_signup_google = `INSERT INTO users(uid,name,email,gid,dp) values(?,?,?,?,?)`,    
+    sql_query_signup_fb     = `INSERT INTO users(uid,name,email,fid,dp) values(?,?,?,?)`,    
     sql_query_google_update = `UPDATE USERS SET gid=? WHERE email=?`,
     sql_query_google        = `SELECT * FROM users WHERE gid=?`,
     sql_query_facebook      = `SELECT * FROM users WHERE fid=?`;
