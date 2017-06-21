@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('./helpers/globalVars.js');
 require('./helpers/tokens.js');
 require('./helpers/mysqlConn.js');
