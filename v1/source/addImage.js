@@ -1,4 +1,3 @@
-require('json');
 var sqlInsert = "insert into images(name,details,tags) values (?,?,?)";
 var cameraMake,
     cameraModel,
