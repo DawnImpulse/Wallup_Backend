@@ -58,7 +58,7 @@ sql_conn.query("select AID from temp_image",function(err,result){
 	}
 });
 while(sqlFinish0 == 0){sleep(10);};
-for (var i = 0; i < 50; i++) 
+for (var i = 0; i < 45; i++) 
 { 
 	random = Math.floor((Math.random() * aid.length));	
 	delId = aid[random];
