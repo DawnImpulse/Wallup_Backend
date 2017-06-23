@@ -12,6 +12,7 @@ require('./login.js');
 require('./addImage.js');
 require('./modifyImageDetails.js');
 require('./listFeatured.js');
+require('./taggingList.js');
 
 var url = require('url');
 var multer = require('multer');
@@ -35,6 +36,7 @@ var upload = multer({storage:storage});
 //GET Requests--------------------
 router.get('/v1/listCollections', function(req, res) { responseObject = res; w2.emit('w2fetch',req,res);});
 router.get('/v1/listFeatured', function(req, res) { responseObject = res; w1.emit('listFeatured',req,res)});
+router.get('/v1/taggingList',function(req,res){ responseObject = res; w1.emit('taggingList',req,res)});
 
 router.get('*',function(req,res){ res.json({name:req.query.name});});
 

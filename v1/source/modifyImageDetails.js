@@ -4,6 +4,7 @@ var sql_query_image_update      = `INSERT INTO featured_popular(image_AID,type,d
     sql_query_category_images   = `SELECT images FROM collection WHERE AID=?`,
     sql_query_category_image_add= `UPDATE collection SET images=? WHERE AID=?`,
     sql_query_category_highlig  = `UPDATE collection SET highlights=? WHERE AID=?`;
+    sql_query_tagged_image      = `UPDATE images SET tagged=? WHERE AID=?`;
 
 
 var type,
@@ -161,7 +162,24 @@ var user_verify_response = userVerify(req);
                                                               message : "Successfully Updated"});                                                    
                                                 }
                                             });//end of query
-                                        }
+                                        }else if(parseInt(mode) == 5) //tagged images
+                                                {                           
+                                                    image_AID = req.body.image_AID;                                                    
+                                                    sql_conn.query(sql_query_tagged_image,[parseInt(`1`),image_AID],function(err,result){
+                                                        if(err)
+                                                        {
+                                                             res.json({success       : "false",
+                                                                       errorID       : "query-failed",
+                                                                       errorMessage  : "Server Error"
+                                                                    });
+                                                            file.appendFile(errorLogFile,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});
+                                                        }else
+                                                        {
+                                                            res.json({success : "true",
+                                                                      message : "Successfully Updated"});                                                             
+                                                        }
+                                                    });//end of query
+                                                }
 
     }
 });//end of w8 modifyImage
@@ -175,7 +193,7 @@ function userVerify(req) //verify user token & access
     {
         uid_in_token = token_verify.UID;
         uid_given    = req.body.uid;
-        
+                
         if(uid_in_token !== uid_given) 
         {
             response = {success     : "false",
