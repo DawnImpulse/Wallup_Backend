@@ -1,4 +1,4 @@
-var sqlQuery        = 'Select AID,name,favouriteCount,downloadCount,viewCount,tags from images ORDER BY AID DESC LIMIT ?';
+var sqlQuery        = 'Select AID,details,favouriteCount,downloadCount,viewCount,tags,tagged from images ORDER BY AID DESC LIMIT ?';
 
 var pageNo,
     lowerLimit,
@@ -31,7 +31,7 @@ w1.on('w1fetch', function (req,res) {
                     for(var i=lowerLimit;i<upperLimit;i++)  //Creating Image Json Object and pushing to Array
                         {
                             imagesJson = {AID : result[i].AID,
-                                          name : result[i].name,
+                                          details : result[i].details,
                                           favouriteCount : result[i].favouriteCount,
                                           downloadCount : result[i].downloadCount,
                                           viewCount : result[i].viewCount,
@@ -41,7 +41,7 @@ w1.on('w1fetch', function (req,res) {
                         
                     res.json({success    : "true",
                               message    : "Successfully Data Returned",
-                              imagesName : responseArray}); //Response
+                              images     : responseArray}); //Response
 
                     responseArray = [];
                 }
