@@ -76,15 +76,19 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
     file.appendFile(exceptionLogFile,dateTime + " :: " +err+"\n",function(err){console.log(err);});
     
-    if(responseObject.headersSent)
+    if(responseObject)
     {
-        console.log('Headers-Sent');
-    }else
-        {
-            responseObject.json({success      : "false",
-                         errorId      : "uncaughtException",
-                         errorMessage : "Server Side Exception"});   
-        }
+        if(responseObject.headersSent)
+            {
+                console.log('Headers-Sent');
+            }else
+                {
+                    responseObject.json({success      : "false",
+                                        errorId      : "uncaughtException",
+                                        errorMessage : "Server Side Exception"});   
+                }
+    }
+    
 }); //Global Unchecked Exception Handler
 
 

@@ -8,8 +8,9 @@ w1.on("taggingList",function(req,res){
             response = {success       : "false",
                         errorID       : "query-failed",
                         errorMessage  : "Server Error"
-                        };  
-            file.appendFile(errorLogFile,dateTime+" :: "+err+ "\n" ,function(err){console.log(err);});
+                    };  
+            res.json(response);
+            file.appendFile(errorLogFile,dateTime+" :: "+err+ "\n" ,function(err){});
         }else
         {
             var list = [];
