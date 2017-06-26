@@ -38,6 +38,8 @@ router.get('/v1/listCollections', function(req, res) { responseObject = res; w2.
 router.get('/v1/listFeatured', function(req, res) { responseObject = res; w1.emit('listFeatured',req,res)});
 router.get('/v1/taggingList',function(req,res){ responseObject = res; w1.emit('taggingList',req,res)});
 
+router.get('/live',function(req,res){ responseObject = res ; res.json({name : req.query.name})});
+router.get('/count',function(req,res){ responseObject = res ; countImages(res)});
 router.get('*',function(req,res){ res.json({name:req.query.name});});
 
 //POST Requests-------------------

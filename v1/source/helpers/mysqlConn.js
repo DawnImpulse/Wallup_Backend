@@ -36,3 +36,17 @@ handleDisconnect();
 setInterval(function () {
     sql_conn.query('SELECT 1');
 }, 30*1000);
+
+global.countImages = function(res)
+{
+  sql_conn.query("SELECT count(*) as count FROM images",function(err,result){
+      if(err)
+      {
+        res.json({success : "false"});        
+      }else
+      {
+        res.json({success : "true",
+                  count   : result[0].count});                  
+      }
+  });//end of query
+}

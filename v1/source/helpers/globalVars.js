@@ -6,6 +6,7 @@ global.jwt              = require('jsonwebtoken'),
 global.express          = require('express'),
 global.bodyParser       = require('body-parser'),
 global.nodemailer       = require('nodemailer'),
+global.request		    = require('request'),
 global.sleep            = require('system-sleep');
 global.mailLogs         = path.resolve(__dirname,'..','..','..','./logs') + '/mailLogs.txt';
 global.bitlyLogs        = path.resolve(__dirname,'..','..','..','./logs') + '/bitlyLogs.txt';
