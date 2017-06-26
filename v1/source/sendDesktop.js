@@ -5,7 +5,7 @@ var receipents,
     type,
     sourceImage,
     quality,
-    UID,
+    uid,
     email,
     name,
     token,
@@ -13,7 +13,7 @@ var receipents,
     bitlyShortenResponse,
     mailObject,
     imagePath,
-    sqlQuery = "select email,name from users where UID = ?";
+    sqlQuery = "select email,name from users where uid = ?";
 
 w4.on('w4mail',function(req,res){
     
@@ -53,7 +53,7 @@ w4.on('w4mail',function(req,res){
             
             if(tokenVerifyResponse.success === true)
                 {
-                    wait.for(sql_conn.query(sqlQuery,tokenVerifyResponse.UID,function(err,result){                
+                    wait.for(sql_conn.query(sqlQuery,tokenVerifyResponse.uid,function(err,result){                
                         email   = result.email;
                         name    = result.name;
                     }));

@@ -4,7 +4,7 @@ var bcrypt   = require('bcrypt');
 var name = "STONEVIRETECHNOLOGIES",    
     possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     delta = "",
-    UID,
+    uid,
     result;
 
 global.generateUID = function()
@@ -21,17 +21,17 @@ global.generateUID = function()
         
     try
     {
-        UID = checksum(delta);
+        uid = checksum(delta);
     }catch(err)
     {
         result = {success : "false",
-                  errorID : "UID-checksum-failed"                
+                  errorID : "uid-checksum-failed"                
                  };
         return result;
     }
             
     result = {success   : "true",
-              UID       : UID
+              uid       : uid
              }
     
     return result;

@@ -1,5 +1,5 @@
-var sqlQuery        = "Select f.AID as AID,i.name as name from featured_popular as f, images as i " +
-                      "where f.type='popular' AND f.duration=? AND f.image_AID=i.AID ORDER BY f.AID desc LIMIT ? ";
+var sqlQuery        = "Select f.aid as aid,i.name as name from featured_popular as f, images as i " +
+                      "where f.type='popular' AND f.duration=? AND f.image_aid=i.aid ORDER BY f.aid desc LIMIT ? ";
 
 var pageNo,
     duration,
@@ -33,7 +33,7 @@ w3.on('w3fetch',function(req,res){
 
                     for(var i=lowerLimit;i<upperLimit;i++)  //Creating Image Json Object and pushing to Array
                         {
-                            imagesJson = {AID : result[i].AID,
+                            imagesJson = {aid : result[i].aid,
                                           name : result[i].name}                                                                    
                             
                             responseArray.push(imagesJson);

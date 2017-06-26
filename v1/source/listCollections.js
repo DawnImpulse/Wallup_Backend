@@ -1,4 +1,4 @@
-var sqlQuery     = "Select AID,name,images,highlights from collection ORDER BY NAME ASC";   
+var sqlQuery     = "Select aid,name,images,highlights from collection ORDER BY NAME ASC";   
 
 var collectionJson,
     responseArray = [];
@@ -17,7 +17,7 @@ w2.on('w2fetch',function(req,res){
                
                for(var i in result)
                    {
-                       collectionJson = {AID        : result[i].AID,
+                       collectionJson = {aid        : result[i].aid,
                                          name       : result[i].name,
                                          images     : result[i].images,                                         
                                          highlights : result[i].highlights,

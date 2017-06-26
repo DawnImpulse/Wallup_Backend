@@ -1,5 +1,5 @@
-var sql_query_fetch = `SELECT i.AID as AID,i.details as details,i.favouriteCount as favourite,i.downloadCount as download,i.viewCount as view,
-                      i.tags as tags FROM featured_popular as f,images as i WHERE f.type="featured" AND f.image_AID=i.AID `;
+var sql_query_fetch = `SELECT i.aid as aid,i.details as details,i.favouriteCount as favourite,i.downloadCount as download,i.viewCount as view,
+                      i.tags as tags FROM featured_popular as f,images as i WHERE f.type="featured" AND f.image_aid=i.aid `;
 
 w1.on(`listFeatured`,function(req,res){
 
@@ -18,7 +18,7 @@ w1.on(`listFeatured`,function(req,res){
             var image_details;
 
             for (var i = 0; i < result.length; i++) {
-                image_details = {AID            : result[i].AID,
+                image_details = {aid            : result[i].aid,
                                  details        : result[i].details,
                                  favouriteCount : result[i].favourite,
                                  downloadCount  : result[i].download,

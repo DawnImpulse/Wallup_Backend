@@ -160,10 +160,10 @@ w9.on(`w9login`,function(req,res){
 
 function userDetails(user_result,res)
 {
-    var token_response = generateToken(user_result[0].UID);
+    var token_response = generateToken(user_result[0].uid);
     if(token_response.success === "true")
         {
-            var details = {UID      : user_result[0].UID,
+            var details = {uid      : user_result[0].uid,
                            token    : token_response.token,
                            email    : user_result[0].email,
                            dp       : user_result[0].dp,
@@ -190,14 +190,14 @@ function userSignUp(req,res,client_mode)
         var name = req.body.name;
         var email = req.body.email;
         var temp_password = req.body.password;
-        var UID;
+        var uid;
         
-        var generate_UID_result = generateUID();
+        var generate_uid_result = generateUID();
         var password_hashing    = hashing(temp_password.concat(`stonehashing`));
         
-        if(generate_UID_result.success === "true")
+        if(generate_uid_result.success === "true")
             {
-                UID = generate_UID_result.UID;        
+                uid = generate_uid_result.uid;        
             }else
             {
                  res.json({success       : "false",
@@ -217,7 +217,7 @@ function userSignUp(req,res,client_mode)
                           });
             }        
         
-        sql_conn.query(sql_query_signup,[UID,name,email,password],function(err,result){
+        sql_conn.query(sql_query_signup,[uid,name,email,password],function(err,result){
            
             if(err)
                 {
@@ -271,13 +271,13 @@ function userSignUp(req,res,client_mode)
                         var email   = req.body.email;
                         var gid     = req.body.gid;
                         var dp      = req.body.dp;
-                        var UID;
+                        var uid;
 
-                        var generate_UID_result = generateUID();            
+                        var generate_uid_result = generateUID();            
 
-                        if(generate_UID_result.success === "true")
+                        if(generate_uid_result.success === "true")
                             {
-                                UID = generate_UID_result.UID;        
+                                uid = generate_uid_result.uid;        
                             }else
                             {
                                  res.json({success       : "false",
@@ -286,7 +286,7 @@ function userSignUp(req,res,client_mode)
                                           });
                             }            
 
-                        sql_conn.query(sql_query_signup_google,[UID,name,email,gid,dp],function(err,result){
+                        sql_conn.query(sql_query_signup_google,[uid,name,email,gid,dp],function(err,result){
 
                             if(err)
                                 {

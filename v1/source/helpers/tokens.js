@@ -7,11 +7,11 @@ var privateKey      = path.resolve(__dirname,'..','./keys/wallup'),
     tokenVerifyResponse,
     token;
 
-global.generateToken = function(UID){
+global.generateToken = function(uid){
     
     try
     {
-        token                   = jwt.sign({aud:UID,iss:tokenIssuer}, privateKey, { expiresIn: 365*24*60*60});    
+        token                   = jwt.sign({aud:uid,iss:tokenIssuer}, privateKey, { expiresIn: 365*24*60*60});    
         tokenGenerateResponse   = {success : "true",
                                    token   : token} ;
         return tokenGenerateResponse;
@@ -38,7 +38,7 @@ global.verifyToken = function(tokenToCheck){
         tokenVerifyResponse = jwt.verify(tokenToCheck,privateKey);
         checkTokenResponse  = {
                                 success : 'true',
-                                UID     : tokenVerifyResponse.aud
+                                uid     : tokenVerifyResponse.aud
                               };        
                         
         return checkTokenResponse;

@@ -1,4 +1,4 @@
-var sql_query = `SELECT AID,details FROM images WHERE tagged=0 LIMIT 10`;
+var sql_query = `SELECT aid,details FROM images WHERE tagged=0 LIMIT 10`;
 
 
 w1.on("taggingList",function(req,res){
@@ -17,7 +17,7 @@ w1.on("taggingList",function(req,res){
             for(var i=0;i<result.length;i++)
             {
                 var images = {
-                                AID     : result[i].AID,
+                                aid     : result[i].aid,
                                 details : result[i].details
                              };
                 list.push(images);

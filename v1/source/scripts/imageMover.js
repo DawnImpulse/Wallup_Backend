@@ -39,11 +39,11 @@ var value = 0,
 	delId;
 
 
-var readQuery  = `Select * from temp_image where AID=?`,
+var readQuery  = `Select * from temp_image where aid=?`,
     writeQuery = `INSERT INTO images(id,details,author_url) values(?,?,?)`,
-	deleteQuery= `Delete from temp_image where AID=?`;
+	deleteQuery= `Delete from temp_image where aid=?`;
 
-sql_conn.query("select AID from temp_image",function(err,result){
+sql_conn.query("select aid from temp_image",function(err,result){
 	if(err)
 	{
 		process.exit();
@@ -51,7 +51,7 @@ sql_conn.query("select AID from temp_image",function(err,result){
 	{
 		for(var i=0;i<result.length;i++)
 		{
-			aid[i] = result[i].AID;
+			aid[i] = result[i].aid;
 		}
 		
 		sqlFinish0 = 1;		
