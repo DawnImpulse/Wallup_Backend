@@ -3,7 +3,7 @@ var sql_query_image_update      = `INSERT INTO featured_popular(image_aid,type,d
     sql_query_add_category      = `INSERT INTO collection(type,name) values (?,?)`,
     sql_query_category_images   = `SELECT images FROM collection WHERE aid=?`,
     sql_query_category_image_add= `UPDATE collection SET images=? WHERE aid=?`,
-    sql_query_category_highlig  = `UPDATE collection SET highlights=? WHERE aid=?`;
+    sql_query_category_highlig  = `UPDATE collection SET highlights=? WHERE aid=?`,
     sql_query_tagged_image      = `UPDATE images SET tagged=? WHERE aid=?`;
 
 
