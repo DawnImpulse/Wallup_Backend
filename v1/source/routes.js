@@ -13,6 +13,7 @@ require('./addImage.js');
 require('./modifyImageDetails.js');
 require('./listFeatured.js');
 require('./taggingList.js');
+require('./listCategoryCollectionName.js');
 
 var url = require('url');
 var multer = require('multer');
@@ -22,7 +23,7 @@ var router           = express.Router(),
     port             = process.env.PORT || 7091,
     responseObject;
 
-var body_urlencode = bodyParser.urlencoded({ extended: true });
+var body_urlencode   = bodyParser.urlencoded({ extended: true });
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, imagesPath);
@@ -37,6 +38,7 @@ var upload = multer({storage:storage});
 router.get('/v1/listCollections', function(req, res) { responseObject = res; w2.emit('w2fetch',req,res);});
 router.get('/v1/listFeatured', function(req, res) { responseObject = res; w1.emit('listFeatured',req,res)});
 router.get('/v1/taggingList',function(req,res){ responseObject = res; w1.emit('taggingList',req,res)});
+router.get('/v1/listCategoryCollectionNames',function(req,res){ responseObject = res; w1.emit('listCategoryCollectionName',req,res)});
 
 router.get('/live',function(req,res){ responseObject = res ; res.json({name : req.query.name})});
 router.get('/count',function(req,res){ responseObject = res ; countImages(res)});
