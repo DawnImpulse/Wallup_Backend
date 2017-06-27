@@ -16,14 +16,18 @@ w1.on('listCategoryCollectionName',function(req,res)
                     }else
                     {
                         var list = [];
+                        var aid_list= [];
                         for(var i=0;i<result.length;i++)
                         {
                             list.push(result[i].name);
+                            aid_list.push(result[i].aid);
                         }
                         res.json({success : "true",
                                   message : "Successful Data Return",
-                                  names   : list});
-                        list = [];
+                                  names   : list,
+                                  aid_list: aid_list});
+                        list     = [];
+                        aid_list = [];
                     }
         });//end of query
     }else if(req.query.type === "collection")
