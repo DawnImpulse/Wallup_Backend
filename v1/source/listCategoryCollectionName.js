@@ -1,5 +1,5 @@
-var sql_query_category   = `SELECT DISTINCT aid,name FROM collection where type="category"`;
-var sql_query_collection = `SELECT DISTINCT aid,name FROM collection where type="collection"`;
+var sql_query_category   = `SELECT DISTINCT aid,name FROM collection where type="category" ORDER BY ASC`;
+var sql_query_collection = `SELECT DISTINCT aid,name FROM collection where type="collection" ORDER BY ASC`;
 
 w1.on('listCategoryCollectionName',function(req,res)
 {
