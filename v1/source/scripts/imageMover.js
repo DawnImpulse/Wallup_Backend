@@ -95,7 +95,7 @@ for (var i = 0; i < 45; i++)
 			else
 			{
 				var parsed = JSON.parse(body);
-				if(!body.hasOwnPorperty(`errors`))
+				if(!parsed.hasOwnProperty(`errors`))
 				{
 					imageDetails = body;
 					requestFinish=1;	
