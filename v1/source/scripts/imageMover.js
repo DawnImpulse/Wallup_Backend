@@ -94,8 +94,16 @@ for (var i = 0; i < 45; i++)
 			}
 			else
 			{
-				imageDetails = body;
-				requestFinish=1;
+				var parsed = JSON.parse(body);
+				if(!body.hasOwnPorperty(`errors`))
+				{
+					imageDetails = body;
+					requestFinish=1;	
+				}else
+				{
+					requestFinish=2;
+					console.log(body);
+				}
 			}
 		});
 
