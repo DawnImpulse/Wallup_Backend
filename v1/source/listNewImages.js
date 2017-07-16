@@ -12,8 +12,8 @@ w1.on('w1fetch', function (req,res) {
 		
     page_no          = req.body.page_no,
     
-    upperLimit = page_no*10;
-    lowerLimit = upperLimit - 10;
+    upperLimit = page_no*30;
+    lowerLimit = upperLimit - 30;
     
     //Querying DB for list of images
     sql_conn.query(sqlQuery,upperLimit,function(err,result){
