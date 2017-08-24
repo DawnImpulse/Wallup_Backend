@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/Saksham/Desktop/register.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Register</title>
+  <!-- CORE CSS-->
+  
+  <link rel="stylesheet" href="./Register_files/materialize.min.css">
+  <link rel="stylesheet" href="./Register_files/font-awesome.min.css">
+  <link rel="stylesheet" href="./Register_files/icon">
+
+<style type="text/css">
+html,
+body {
+    height: 100%;
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+    
+.margin {
+  margin: 0 !important;
+}
+    
+.icon{
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;       
+}
+</style>
+  
+</head>
+
+<body class="blue">
+
+  <div id="login-page">
+    <div class="z-depth-12 card" style="padding:16px">
+        
+        <!-- Start of Form -->
+      <form class="login-form">    
+          
+          <!-- Heading for the Register Block -->
+          <div class="row">
+           <div class="input-field col s12 center">        
+            <b><p class="center login-form-text" style="font-size:150%;text-align:center">Register</p></b>
+           </div>
+          </div>
+          
+          <!-- Email sub-block -->
+          <div class="row margin">
+           <div class="input-field col s12">
+            <i class="icon material-icons prefix">mail_outline</i>
+            <input class="validate" id="email" type="email" placeholder="Email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+           </div>
+          </div> 
+              
+          <!-- Username sub-block -->
+          <div class="row margin">
+           <div class="input-field col s12">
+            <i class="icon material-icons prefix">perm_identity</i>
+            <input type="text" id="username" placeholder="Unsplash Username">
+            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+           </div>
+          </div> 
+          
+          <!-- Register Button -->
+          <div class="row" style="margin-top:8px">
+           <div class="input-field col s12">
+               <div class="btn col s12 blue" onclick="register()">Register</div>
+           </div>
+          </div>
+          
+          <!-- Login Button -->
+          <div style="margin-top:30px;margin-bottom:16px">
+            <p class="center" style="font-size:130%"><a href="https://api.stonevire.com/wallup/unsplash/" style="color:grey"><u>Login</u></a></p>
+          </div>          
+          
+          <!-- Message Element -->
+          <div style="margin-bottom:24px;font-size:90%" class="center col s12">
+            <span id="span1"></span>
+          </div>
+          
+      </form>
+    </div>
+  </div>
+    
+  <!--Documentation Button-->
+  <div>
+      <p class="center"><u><a href="https://api.stonevire.com/wallup/unsplash/documentation" style="color:#eceff1;font-size:120%">Documentation</a></u></p>
+  </div>
+
+
+
+<script>
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+function register() {
+  var xhttp = createCORSRequest('GET', "https://api.stonevire.com/wallup/unsplash?email="+document.getElementById("email").value+"&username="+document.getElementById("username").value+"&login=register");
+    
+  xhttp.onload = function() {
+	var data = JSON.parse(this.responseText);
+      
+    if(data.success !== "true")
+    {
+        document.getElementById("span1").innerHTML = data.errorMessage;     
+        document.getElementById("span1").style.color = "red";
+    }else
+    {
+        document.getElementById("span1").innerHTML = "Client Id : "+ data.client_id;     
+        document.getElementById("span1").style.color = "green";
+    }
+};
+  xhttp.send();
+}
+</script></body></html>

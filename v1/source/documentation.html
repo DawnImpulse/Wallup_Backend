@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="./Register_files/materialize.min.css"></head>
+<body>
+    
+<style>
+    
+body{
+    margin-left: 16px;
+    margin-bottom: 64px;
+    margin-right: 16px
+}
+    
+.heading1{
+    font-size: 120%;
+}
+    
+.request{
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+}
+    
+</style>    
+<div style="font-size:200%;margin-top:32px;">
+    <u>API Documentation</u>
+</div>    
+    
+<div class="heading1" style="margin-top:48px">
+    1. Register
+</div>
+    
+   <br>First you need to register to get a <b>client_id</b> which will be used for the API calls. 
+    <a href="https://api.dawnimpulse.com/wallup/unsplash"><u>Here</u></a><br><br>
+    Keep the following in mind while registering : <br>
+    
+    <ol type="a">
+        <li>This service is completely free with no caps.</li>
+        <li>The username you provide should be the same as your unsplash username</li>
+        <li>The API currently only provides the <b>Trending Images</b> since it is unavailable on <b>Unsplash API</b> and I handselect n update those on daily basis. <br>            
+        <li>Since this service is directly used with <b>Unsplash API</b> hence you should only provide your genuine details.</li>
+        <li>You will never receive any <u>SPAM or other Emails</u> from my end , be assured of that .</li>
+        <li>This is my personal project and some API calls from my end use the <b>Unsplash API</b> and I am providing that from one of my other application's API limit . Hence it is a request that you don't abuse the API provided here .Also I am not earning anything from the same, just trying to help out the community :)</li>
+    </ol>
+    <br>
+    
+<div class="heading1" style="margin-top:48px">
+    2. Trending Images call
+</div>    
+    
+    <br>
+    
+    <!--Get Card-->
+    <div class="row">
+        <div class="col">
+            <div class="blue-grey request" style="font-size:100%;border-radius: 3px">
+                <div class="white-text">
+                    GET Request
+                </div>                
+            </div>
+        </div>
+    </div>
+    
+    <!--Link-->
+    <div style="margin-left:16px">
+        <a><u>https://api.dawnimpulse.com/wallup/unsplash_trending</u></a>
+    </div>
+    <br>
+    
+    <div style="margin-left:16px;font-size:100%">
+        <u>Parameters</u>
+    </div>
+    <!--Parametes-->
+     <div class="row">
+        <div class="col">
+            <div class="request" style="border-radius: 3px; background:#F1F1F1">
+                client_id &nbsp; &nbsp; &nbsp; &nbsp;:  &nbsp;(important) The id received after registering<br>
+                page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:  &nbsp;(optional) The page no you wish to return.<br>
+                per_page &nbsp; &nbsp; &nbsp;:  &nbsp;(optional) No of items per page. <br>(default : 30)
+            </div>
+        </div>
+    </div>
+
+<br>
+    
+    <div style="margin-left:16px;font-size:105%">
+        Example : 
+    </div>
+    
+    <!--Link-->
+    <div style="margin-left:16px">
+        <a><u>https://api.dawnimpulse.com/wallup/unsplash_trending?client_id=abcabc&amp;page=2&amp;per_page=20</u></a>
+    </div><br>
+
+    
+    <div style="margin-left:16px;font-size:105%">
+        <u>Response</u>
+    </div>
+    
+    <!--Parametes-->
+     <div class="row">
+        <div class="col">
+            <div class="request" style="border-radius: 3px; background:#F1F1F1">
+                Similar to Unsplash both for error &amp; success.
+                <br><br>
+                Success will return an Array of Objects <br>
+                Error will return { " errors " : [ " " ] } the error caused .<br><br> (Note the Errors will be completely different from Unsplash API ones)
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
