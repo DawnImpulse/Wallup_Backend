@@ -15,8 +15,9 @@ require('./listFeatured.js');
 require('./taggingList.js');
 require('./listCategoryCollectionName.js');
 
-var url = require('url');
-var multer = require('multer');
+var url     = require('url');
+var multer  = require('multer');
+var cors    = require('cors')
 
 var router           = express.Router(),
     router1          = express.Router(),
@@ -33,6 +34,8 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({storage:storage});
+
+app.use(cors());
 
 //GET Requests--------------------
 router.get('/v1/listCollections', function(req, res) { responseObject = res; w2.emit('w2fetch',req,res);});
