@@ -51,20 +51,19 @@ body {
            <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
             <input class="validate" id="email" type="email" placeholder="Email">
-            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
            </div>
           </div>               
           
           <!-- Login Button -->
           <div class="row" style="margin-top:8px">
            <div class="input-field col s12">
-               <div class="btn col s12 blue" onclick="login()">Login</div>
+               <div id="login1" class="btn col s12 blue" onclick="login()">Login</div>
            </div>
           </div>
           
           <!-- Register Button -->
           <div style="margin-top:30px;margin-bottom:16px">
-            <p class="center" style="font-size:130%"><a href="https://api.stonevire.com/wallup/unsplash/register/" style="color:grey"><u>Register Now!</u></a></p>
+            <p class="center" style="font-size:130%"><a href="/unsplash_register" style="color:grey"><u>Register Now!</u></a></p>
           </div>          
           
           <!-- Message Element -->
@@ -78,12 +77,19 @@ body {
     
   <!--Documentation Button-->
   <div>
-      <p class="center" ><u><a href="https://api.stonevire.com/wallup/unsplash/documentation" style="color:#eceff1;font-size:120%">Documentation</a></u></p>
+      <p class="center" ><u><a href="/unsplash_documentation" style="color:#eceff1;font-size:120%">Documentation</a></u></p>
   </div>
 </body>
 </html>
 
 <script>
+
+document.getElementById('email').onkeypress=function(e){
+  if(e.keyCode==13){
+      document.getElementById('login1').click();
+  }
+}
+
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -101,7 +107,7 @@ function createCORSRequest(method, url) {
 }
 
 function login() {
-  var xhttp = createCORSRequest('GET', "https://api.stonevire.com/wallup/unsplash?email="+document.getElementById("email").value+"&username=u&login=signin");
+  var xhttp = createCORSRequest('GET', "/unsplash?email="+document.getElementById("email").value+"&username=u&login=signin");
     
   xhttp.onload = function() {
 	var data = JSON.parse(this.responseText);
@@ -109,9 +115,11 @@ function login() {
     if(data.success !== "true")
     {
         document.getElementById("span1").innerHTML = data.errorMessage;     
+        document.getElementById("span1").style.color = "red";
     }else
     {
-        document.getElementById("span1").innerHTML = "Client Id : "+ data.client_id;     
+        document.getElementById("span1").innerHTML = "Client Id : "+ data.client_id; 
+        document.getElementById("span1").style.color = "green";    
     }
 };
   xhttp.send();

@@ -46,8 +46,21 @@ router.get('/v1/listCategoryCollectionNames',function(req,res){ responseObject =
 
 router.get('/live',function(req,res){ responseObject = res ; res.json({name : req.query.name})});
 router.get('/count',function(req,res){ responseObject = res ; countImages(res)});
-router.get('/unsplash',function(req,res)
-    { 
+
+router.get('/unsplash_register',function(req,res){
+    responseObject = res;
+    res.sendFile(__dirname + '/register.html');
+});
+
+router.get('/unsplash_documentation',function(req,res){
+    responseObject = res;
+    res.sendFile(__dirname + '/documentation.html');
+});
+
+
+//Unsplash User Register
+router.get('/unsplash',function(req,res){ 
+
         responseObject = res ;
 
         //Query Params Present
@@ -56,14 +69,13 @@ router.get('/unsplash',function(req,res)
             w1.emit('unsplash_user',req,res);
         }else //Empty Query
         {
-            res.sendFile(__dirname + '/script.html');
+            res.sendFile(__dirname + '/login.html');
         }        
 
-    });
+});
+
 
 //router.get('*',function(req,res){ res.json({name:req.query.name});});
-
-//Unsplash User Register
 
 //POST Requests-------------------
 router.route('/v1/listNewImages').post(body_urlencode,function(req,res){ responseObject = res; w1.emit('w1fetch',req,res);});
