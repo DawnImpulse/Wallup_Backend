@@ -87,7 +87,7 @@ body {
           
           <!-- Login Button -->
           <div style="margin-top:30px;margin-bottom:16px">
-            <p class="center" style="font-size:130%"><a href="/unsplash" style="color:grey"><u>Login</u></a></p>
+            <p class="center" style="font-size:130%"><a href="/wallup/unsplash" style="color:grey"><u>Login</u></a></p>
           </div>          
           
           <!-- Message Element -->
@@ -101,7 +101,7 @@ body {
     
   <!--Documentation Button-->
   <div>
-      <p class="center"><u><a href="/unsplash_documentation" style="color:#eceff1;font-size:120%">Documentation</a></u></p>
+      <p class="center"><u><a href="/wallup/unsplash_documentation" style="color:#eceff1;font-size:120%">Documentation</a></u></p>
   </div>
 
 
@@ -124,7 +124,7 @@ function createCORSRequest(method, url) {
 }
 
 function register() {
-  var xhttp = createCORSRequest('GET', "/unsplash?email="+document.getElementById("email").value+"&username="+document.getElementById("username").value+"&login=register");
+  var xhttp = createCORSRequest('GET', "/wallup/unsplash?email="+document.getElementById("email").value+"&username="+document.getElementById("username").value+"&login=register");
     
   xhttp.onload = function() {
 	var data = JSON.parse(this.responseText);

@@ -130,7 +130,7 @@ process.on('uncaughtException', function (err) {
 
 
 var hee = path.resolve(__dirname,'..','..','..','./images');
-app.use('/', router);
+app.use('/wallup', router);
 //app.use(express.static(hee),router1);
 /*app.use('*',function(req,res)
 {
