@@ -81,6 +81,13 @@ router.get('/unsplash_trending',function(req,res){
     w1.emit('unsplash_trending',req,res);
 });
 
+//Unsplash Trending Insert
+router.get('/unsplash_trending_insert',function(req,res){
+
+    responseObject = res;
+    w1.emit('unsplash_trending_insert',req,res);
+});
+
 //router.get('*',function(req,res){ res.json({name:req.query.name});});
 
 //POST Requests-------------------

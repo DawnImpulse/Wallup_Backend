@@ -3,12 +3,18 @@ var page,
     per_page,
     client_id,
     upper_limit,
-    lower_limit;
+    lower_limit,
+    details,
+    id,
+    access;
 
 var response_array = [];
 
+var unsplash_client_id = `a25247a07df2c569f6f3dc129f43b0eb3b0e3ff69b00d5b84dd031255e55b961`;
+
 var sql_query       = `SELECT details FROM unsplash_trending ORDER BY aid DESC LIMIT ? `;
 var sql_client_id   = `SELECT access FROM unsplash_user WHERE client_id = ? `;
+var sql_insert      = `INSERT INTO unsplash_trending (id,details) VALUES(?,?) `;
 
 w1.on('unsplash_trending',function(req,res){
 
@@ -71,7 +77,35 @@ w1.on('unsplash_trending',function(req,res){
 
 });//end of w1 unsplash trending
 
-function clientIdCheck(client_id)
+
+w1.on('unsplash_trending_insert',function(req,res){
+
+    id      = req.query.id;
+    token   = req.query.token;
+
+    if(typeof id =='undefined')
+    {
+        res.json({success : "false" , errorMessage : "No id provided"});
+    }else
+    {
+        if(typeof token =='undefined')
+        {
+            res.json({success : "false" , errorMessage : "Access token not present"});
+        }else
+        {
+            if(token !== "22ahfnnnsiaaasjsdi")
+            {
+                res.json({success : "false" , errorMessage : "Access Denied"});
+            }else
+            {
+                unsplashDetails(id,res);
+            }
+        }
+    }
+});
+
+
+function clientIdCheck(client_id,res)
 {
     var result1;
 
@@ -97,4 +131,38 @@ function clientIdCheck(client_id)
 
     while(!result1){require('deasync').sleep(10);};
     return result1;
+}
+
+function unsplashDetails(id,res)
+{
+    request({
+        uri:`https://api.unsplash.com/photos/`+id+`?client_id=`+unsplash_client_id,
+        method : "GET",
+    },function(error,result,body){
+        if(error)
+        {
+            res.json({success : "false" , errorMessage : "Request Failed"});
+            console.log(error);
+        }
+        else
+        {
+            var parsed = JSON.parse(body);
+            if(parsed.hasOwnProperty(`errors`))
+            {
+                var errorArray = parsed.errors;
+                res.json({success : "false",errorMessage : errorArray[0]});
+            }else
+            {            
+                sql_conn.query(sql_insert,[id,body], function(err,result){
+                    if(err)
+                    {
+                        res.json({success : "false" , errorMessage : "Insert query error"});                                           
+                    }else
+                    {
+                        res.json({success: "true"});
+                    }
+                });
+            }
+        }
+    });    
 }
