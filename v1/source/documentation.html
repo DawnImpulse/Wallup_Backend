@@ -80,7 +80,7 @@ body{
             <div class="request" style="border-radius: 3px; background:#F1F1F1">
                 client_id &nbsp; &nbsp; &nbsp; &nbsp;:  &nbsp;(important) The id received after registering<br>
                 page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:  &nbsp;(optional) The page no you wish to return. (default : 1)<br>
-                per_page &nbsp; &nbsp; &nbsp;:  &nbsp;(optional) No of items per page. <br>(default : 30)
+                per_page &nbsp; &nbsp; &nbsp;:  &nbsp;(optional) No of items per page. (default : 30)<br>
             </div>
         </div>
     </div>
@@ -105,10 +105,11 @@ body{
      <div class="row">
         <div class="col">
             <div class="request" style="border-radius: 3px; background:#F1F1F1">
-                Similar to Unsplash both for error &amp; success.
+                Similar to Unsplash for success
                 <br><br>
-                Success will return an Array of Objects <br>
-                Error will return { " errors " : [ " " ] } the error caused .<br><br> (Note the Errors will be completely different from Unsplash API ones)
+                Success will return an Array of Objects. <br><br>
+                Error will return <br>
+                { "success" : "false" , errorMessage : "the error message" }
                 
             </div>
         </div>
