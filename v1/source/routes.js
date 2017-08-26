@@ -15,6 +15,7 @@ require('./listFeatured.js');
 require('./taggingList.js');
 require('./listCategoryCollectionName.js');
 require('./unsplash_user.js');
+require('./unsplash_trending.js');
 
 var url     = require('url');
 var multer  = require('multer');
@@ -26,7 +27,7 @@ var router           = express.Router(),
     responseObject;
 
 var body_urlencode   = bodyParser.urlencoded({ extended: true });
-var storage = multer.diskStorage({
+var storage          = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, imagesPath);
   },
@@ -34,7 +35,7 @@ var storage = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
-var upload = multer({storage:storage});
+var upload           = multer({storage:storage});
 
 app.use(cors());
 
@@ -47,33 +48,38 @@ router.get('/v1/listCategoryCollectionNames',function(req,res){ responseObject =
 router.get('/live',function(req,res){ responseObject = res ; res.json({name : req.query.name})});
 router.get('/count',function(req,res){ responseObject = res ; countImages(res)});
 
+//Unsplash User Login
+router.get('/unsplash',function(req,res){
+
+    responseObject = res ;
+    
+            //Query Params Present
+            if(Object.keys(req.query).length !== 0)
+            {
+                w1.emit('unsplash_user',req,res);
+            }else //Empty Query
+            {
+                res.sendFile(__dirname + '/login.html');
+            } 
+});
+
+//Unsplash User Register
 router.get('/unsplash_register',function(req,res){
     responseObject = res;
     res.sendFile(__dirname + '/register.html');
 });
 
+//Unsplash Documentation
 router.get('/unsplash_documentation',function(req,res){
     responseObject = res;
     res.sendFile(__dirname + '/documentation.html');
 });
 
-
-//Unsplash User Register
-router.get('/unsplash',function(req,res){ 
-
-        responseObject = res ;
-
-        //Query Params Present
-        if(Object.keys(req.query).length !== 0)
-        {
-            w1.emit('unsplash_user',req,res);
-        }else //Empty Query
-        {
-            res.sendFile(__dirname + '/login.html');
-        }        
-
+//Unsplash Trending Images
+router.get('/unsplash_trending',function(req,res){
+    responseObject = res;
+    w1.emit('unsplash_trending',req,res);
 });
-
 
 //router.get('*',function(req,res){ res.json({name:req.query.name});});
 
