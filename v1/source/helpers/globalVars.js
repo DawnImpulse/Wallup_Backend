@@ -8,10 +8,12 @@ global.bodyParser       = require('body-parser'),
 global.nodemailer       = require('nodemailer'),
 global.request		    = require('request'),
 global.sleep            = require('system-sleep');
+global.moment           = require('moment');
 global.mailLogs         = path.resolve(__dirname,'..','..','..','./logs') + '/mailLogs.txt';
 global.bitlyLogs        = path.resolve(__dirname,'..','..','..','./logs') + '/bitlyLogs.txt';
 global.errorLogFile     = path.resolve(__dirname,'..','..','..','./logs') + '/errorLogs.txt';
 global.exceptionLogFile = path.resolve(__dirname,'..','..','..','./logs')+'/exceptionLogs.txt';
+global.totalRequests    = path.resolve(__dirname,'..','..','..','./logs')+'/totalRequests.txt';
 global.imagesPath       = path.resolve(__dirname,'..','..','..','..','./resources/images');
 
 global.w1 = new events.EventEmitter();

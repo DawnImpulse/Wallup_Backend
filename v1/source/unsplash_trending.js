@@ -12,9 +12,11 @@ var response_array = [];
 
 var unsplash_client_id = `a25247a07df2c569f6f3dc129f43b0eb3b0e3ff69b00d5b84dd031255e55b961`;
 
-var sql_query       = `SELECT details FROM unsplash_trending ORDER BY aid DESC LIMIT ? `;
-var sql_client_id   = `SELECT access FROM unsplash_user WHERE client_id = ? `;
-var sql_insert      = `INSERT INTO unsplash_trending (id,details) VALUES(?,?) `;
+var sql_query           = `SELECT details FROM unsplash_trending ORDER BY aid DESC LIMIT ? `;
+var sql_client_id       = `SELECT access FROM unsplash_user WHERE client_id = ? `;
+var sql_insert          = `INSERT INTO unsplash_trending (id,details) VALUES(?,?) `;
+var sql_client_req      = `SELECT requests FROM unsplash_user WHERE client_id = ?`;
+var sql_client_req_upd  = `UPDATE unsplash_user SET requests = ? WHERE client_id = ?`;
 
 w1.on('unsplash_trending',function(req,res){
 
@@ -32,7 +34,7 @@ w1.on('unsplash_trending',function(req,res){
         {
             res.json({success : "false", errorMessage : client_id_response.errorMessage});
         }else
-        {
+        {            
             if(typeof page == 'undefined')
             {
                 page = 1;
@@ -71,6 +73,9 @@ w1.on('unsplash_trending',function(req,res){
                     response_array = [];
                 }
             });
+
+            client_id_counter(client_id);
+            totals_counter();
         }                
 
     }
@@ -165,4 +170,73 @@ function unsplashDetails(id,res)
             }
         }
     });    
+}
+
+function client_id_counter(client_id)
+{    
+    var client_requests = -1;
+    sql_conn.query(sql_client_req,client_id,function(err,result){
+
+        if(err)
+        {
+            client_requests = -2;
+            console.log(err);            
+        }else
+        {
+            client_requests = result[0].requests;
+        }
+    });//end of query 1
+
+    while(client_requests == -1){require('deasync').sleep(10);};    
+
+    if(client_requests != -1)
+    {                
+        var temp = parseInt(client_requests);
+        temp = temp + 1;
+    
+        sql_conn.query(sql_client_req_upd,[temp,client_id],function(err,result){
+    
+            if(err)
+            {
+                console.log(err);            
+            }
+        });   
+    }
+    
+}
+
+function totals_counter(client)
+{
+    file.readFile(totalRequests, 'utf8' , function(err,total_contents){
+        if(err)
+        {
+            console.log(err);
+        }else
+        {
+            var json;
+            if(total_contents.length !== 0)
+            {
+                var c_moment = moment();
+                var parse = JSON.parse(total_contents);
+                
+                var h  = parse.thishour + 1;
+                var d  = parse.thisday + 1;
+                var m  = parse.thismonth + 1;      
+                var t  = parse.total + 1;
+
+                json = {thishour : h , thisday : d,thismonth : m,total : t};
+            }else
+            {
+                json = {thishour : 1, thisday : 1,thismonth : 1,total : 1};
+            }
+            
+            file.writeFile(totalRequests,JSON.stringify(json),(err) =>{
+
+                if(err)
+                {
+                    console.log(err);
+                }
+            });
+        }
+    });
 }
