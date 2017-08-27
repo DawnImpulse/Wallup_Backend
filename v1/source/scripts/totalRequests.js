@@ -31,7 +31,7 @@ while(1)
     
                 if(c_moment.isSameOrAfter(parsed.nexthour))
                 {
-                    sendResponse("Hour");
+                    //sendResponse("Hour");
                     writeTotals("Hour");
                     temp = moment;
                     parsed.nexthour = temp(parsed.nexthour).add(1,'h').format();
