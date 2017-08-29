@@ -219,10 +219,10 @@ function totals_counter(client)
                 var c_moment = moment();
                 var parse = JSON.parse(total_contents);
                 
-                var h  = parse.thishour + 1;
-                var d  = parse.thisday + 1;
-                var m  = parse.thismonth + 1;      
-                var t  = parse.total + 1;
+                var h  = parseInt(parse.thishour) + 1;
+                var d  = parseInt(parse.thisday)  + 1;
+                var m  = parseInt(parse.thismonth) + 1;      
+                var t  = parseInt(parse.total) + 1;
 
                 json = {thishour : h , thisday : d,thismonth : m,total : t};
             }else
