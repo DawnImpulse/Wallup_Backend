@@ -31,7 +31,7 @@ while(1)
     
                 if(c_moment.isSameOrAfter(parsed.nexthour))
                 {
-                    //sendResponse("Hour");
+                    sendResponse("Hour");
                     writeTotals("Hour");
                     temp = moment;
                     parsed.nexthour = temp(parsed.nexthour).add(1,'h').format();
@@ -121,49 +121,46 @@ function sendResponse(time)
                 request_this_time = parsed.thismonth;
             }
 
-            var myJSONObject = { "text" : "Trending API Requests",
-            "attachments" :[
-             {
-                 "title"  : time_title + " Requests",
-                 "fields" : [
-                     {
-                         "title" : "Requests last "+ time,
-                         "value" : request_this_time,
-                         "short" : "true"
-                     },
-                     {
-                         "title" : "Total Requests",
-                         "value" : parsed.total,
-                         "short" : "true"
-                     }
-                 ]
-             }
-            ]}; //end of JSON
-
-
-            request({
-                url: webhook,
-                method: "POST",
-                json: true,
-                body: myJSONObject
-            }, function (error, response, body){                               
-             if(error)
+            if(time !== "Hour")
+            {
+                var myJSONObject = { "text" : "Trending API Requests",
+                "attachments" :[
                  {
-                     console.log(error);
-                 }        
-            });
+                     "title"  : time_title + " Requests",
+                     "fields" : [
+                         {
+                             "title" : "Requests last "+ time,
+                             "value" : request_this_time,
+                             "short" : "true"
+                         },
+                         {
+                             "title" : "Total Requests",
+                             "value" : parsed.total,
+                             "short" : "true"
+                         }
+                     ]
+                 }
+                ]}; //end of JSON
     
-
+    
+                request({
+                    url: webhook,
+                    method: "POST",
+                    json: true,
+                    body: myJSONObject
+                }, function (error, response, body){                               
+                 if(error)
+                     {
+                         console.log(error);
+                     }        
+                });
+            }            
         }//end of if
     
     }catch(err)
     {
         console.log(err);
-    }
-    
-    
-    
-    
+    }                
     
 }
 
