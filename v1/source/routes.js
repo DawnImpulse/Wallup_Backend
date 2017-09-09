@@ -49,7 +49,7 @@ router.get('/live',function(req,res){ responseObject = res ; res.json({name : re
 router.get('/count',function(req,res){ responseObject = res ; countImages(res)});
 
 //Unsplash User Login
-router.get('/unsplash',function(req,res){
+router.get('/trending',function(req,res){
 
     responseObject = res ;
     
@@ -64,19 +64,19 @@ router.get('/unsplash',function(req,res){
 });
 
 //Unsplash User Register
-router.get('/unsplash_register',function(req,res){
+router.get('/trending_register',function(req,res){
     responseObject = res;
     res.sendFile(__dirname + '/register.html');
 });
 
 //Unsplash Documentation
-router.get('/unsplash_documentation',function(req,res){
+router.get('/trending_documentation',function(req,res){
     responseObject = res;
     res.sendFile(__dirname + '/documentation.html');
 });
 
 //Unsplash Trending Images
-router.get('/unsplash_trending',function(req,res){
+router.get('/trending_images',function(req,res){
     responseObject = res;
     w1.emit('unsplash_trending',req,res);
 });
