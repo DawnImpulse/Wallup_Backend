@@ -2,9 +2,7 @@
   "name": "wallup",
   "description": "Backend for Wallup Application",
   "author": "Saksham",
-  "engines": {
-    //"node": "6.2.0"
-  },
+  "engines": {},
   "dependencies": {
     "bcrypt": "1.0.2",
     "bitly": "4.1.1",
