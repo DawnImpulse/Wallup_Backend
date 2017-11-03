@@ -3,7 +3,7 @@
   "description": "Backend for Wallup Application",
   "author": "Saksham",
   "engines": {
-    "node": "6.2.0"
+    //"node": "6.2.0"
   },
   "dependencies": {
     "bcrypt": "1.0.2",
